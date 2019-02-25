@@ -34,22 +34,49 @@ export default {
           if (SD_NAME === "Cluj") {
             color = "green"
           }
-          this.judete[feature.getProperty('name')] = Math.floor(Math.random() * 101)
-          const opacity = this.judete[SD_NAME] / 100
-          return {
-            fillColor: color,
-            fillOpacity: opacity,
-            strokeWeight: 1
-          }
-        });
-      });
+          const polygon = new google.maps.Polygon({paths: feature.getGeometry().getArray()[0].j})
 
+
+          this.judete[SD_NAME] = {value: Math.floor(Math.random() * 101), polygon: polygon}
+
+        const opacity = this.judete[SD_NAME].value / 100
+        return {
+          fillColor: color,
+          fillOpacity: opacity,
+          strokeWeight: 1
+        }
+      })
+      map.data.addListener('click', (e) => {
+        const judet_label = this.getLabel(google, e.latLng)
+          //console.log(feature.getProperty('name'))
+        new google.maps.Marker({
+          position: e.latLng,
+          map: map,
+          label: judet_label
+
+      })
+    })
+
+
+    })
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
     }
+
   },
-};
+  methods: {
+    getLabel(google, position) {
+      for (var judet in this.judete) {
+        if (google.maps.geometry.poly.containsLocation(position, this.judete[judet].polygon))
+        {
+          return judet
+        }
+
+      }
+    },
+  }
+}
 </script>
 
 <style>
