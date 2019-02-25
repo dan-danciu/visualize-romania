@@ -1,6 +1,14 @@
 // Your personal API key.
 // Get it here: https://console.cloud.google.com/google/maps-apis
-const API_KEY = ``;
+import axios from 'axios'
+var API_KEY = ''
+axios
+  .get("https://1adw40daxl.execute-api.eu-west-1.amazonaws.com/dev/getapikey")
+  .then(response => {
+    API_KEY = response.data.maps_api
+  })
+
+
 const CALLBACK_NAME = `gmapsCallback`;
 
 let initialized = !!window.google;

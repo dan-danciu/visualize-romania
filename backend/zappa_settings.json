@@ -1,0 +1,16 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "eu-west-1",
+        "profile_name": "default",
+        "project_name": "ro-viz",
+        "runtime": "python3.6",
+        "s3_bucket": "ro-viz-phjn01snd",
+        "cors": true,
+        "extra_permissions": [{
+            "Effect": "Allow",
+            "Action": "ssm:GetParameter",
+            "Resource": "arn:aws:ssm:*:*:parameter/*"
+        }]
+    }
+}
