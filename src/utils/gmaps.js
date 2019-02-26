@@ -1,15 +1,10 @@
 // Your personal API key.
 // Get it here: https://console.cloud.google.com/google/maps-apis
-import axios from 'axios'
-var API_KEY = ''
-axios
-  .get("https://1adw40daxl.execute-api.eu-west-1.amazonaws.com/dev/getapikey")
-  .then(response => {
-    API_KEY = response.data.maps_api
-  })
-
-
 const CALLBACK_NAME = `gmapsCallback`;
+
+
+
+
 
 let initialized = !!window.google;
 let resolveInitPromise;
@@ -21,7 +16,7 @@ const initPromise = new Promise((resolve, reject) => {
   rejectInitPromise = reject;
 });
 
-export default function init() {
+export default function init(API_KEY) {
   // If Google Maps already is initialized
   // the `initPromise` should be resolved
   // eventually.

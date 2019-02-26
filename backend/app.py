@@ -6,7 +6,7 @@ import json
 import requests
 
 app = Flask(__name__)
-CORS(app, origins=["http://ro-viz.webapp.link", "https://ro-viz.webapp.link"] )
+CORS(app, origins=["http://ro-viz.webapp.link", "https://ro-viz.webapp.link", "http://localhost:8081"] )
 
 REDIRECT_URI = 'https://eu-semnez.webapp.link/callback'
 TOKEN_URI = 'https://auth.eu-semnez.webapp.link/oauth2/token'
